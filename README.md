@@ -1,10 +1,10 @@
 # Shardus Crypto Utils
 
-Shardus Crypto Utils is a tool providing a set of cryptographic utility functions specifically designed for developers working with the Shardus core. It offers a simplified interface to node-sodium cryptographic functions, which are fundamental to the Shardus project.
+[Shardus Crypto Utils](https://docs.shardus.com/docs/tools/crypto-utils) is a tool providing a set of cryptographic utility functions specifically designed for developers working with the Shardus core. It offers a simplified interface to node-sodium cryptographic functions, which are fundamental to the Shardus project.
 
 ## Installation
 
-You can install Shardus Crypto Utils via npm:
+You can [install Shardus Crypto Utils via npm](https://www.npmjs.com/package/@shardus/crypto-utils):
 
 ```bash
 npm install @shardus/crypto-utils
