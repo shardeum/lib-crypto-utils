@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@types/buffer-xor": "2.0.0",
-    "@types/node": "18.16.1",
+    "@types/node": "18.19.1",
     "gts": "^3.1.1",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
@@ -59,6 +59,6 @@
     "semver": "5.7.2 || 6.3.1 || 7.5.4"
   },
   "engines": {
-    "node": "18.16.1"
+    "node": "18.19.1"
   }
 }
