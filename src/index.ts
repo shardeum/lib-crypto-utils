@@ -181,58 +181,61 @@ export function convertPkToCurve(pk: publicKey | Buffer): curvePublicKey {
   return curvePkBuf.toString('hex');
 }
 
-/**
- * Returns a payload obtained by encrypting and tagging the message string with a key produced from the given sk and pk
- * @param message
- * @param curveSk
- * @param curvePk
- */
-export function encrypt(
-  message: string,
-  curveSk: curveSecretKey | Buffer,
-  curvePk: curvePublicKey | Buffer
-): string {
-  const messageBuf = Buffer.from(message, 'utf8');
-  const curveSkBuf = _ensureBuffer(curveSk, 'Secret key');
-  const curvePkBuf = _ensureBuffer(curvePk, 'Public key');
-  const ciphertext = Buffer.allocUnsafe(
-    messageBuf.length + sodium.crypto_box_MACBYTES
-  );
-  const nonce = Buffer.allocUnsafe(sodium.crypto_box_NONCEBYTES);
-  sodium.randombytes_buf(nonce);
-  sodium.crypto_box_easy(ciphertext, messageBuf, nonce, curvePkBuf as Buffer, curveSkBuf as Buffer);
-  const payload = [ciphertext.toString('hex'), nonce.toString('hex')];
-  return JSON.stringify(payload);
-}
+// Vulns were found in encryp decrypt.  would need a security pass if we ever 
+// need them. GOLD-264
 
-/**
- * Returns the message string obtained by decrypting the payload with the given sk and pk and authenticating the attached tag
- * @param payload
- * @param curveSk
- * @param curvePk
- */
-export function decrypt(
-  payload: string,
-  curveSk: curveSecretKey | Buffer,
-  curvePk: curvePublicKey | Buffer
-): { isValid: boolean; message: string } {
-  payload = JSON.parse(payload);
-  const ciphertext = _ensureBuffer(payload[0], 'Tag ciphertext');
-  const nonce = _ensureBuffer(payload[1], 'Tag nonce');
-  const secretKey = _ensureBuffer(curveSk, 'Secret key');
-  const publicKey = _ensureBuffer(curvePk, 'Public key');
-  const message = Buffer.allocUnsafe(
-    ciphertext.length - sodium.crypto_box_MACBYTES
-  );
-  const isValid = sodium.crypto_box_open_easy(
-    message,
-    ciphertext as Buffer,
-    nonce as Buffer,
-    publicKey as Buffer,
-    secretKey as Buffer
-  );
-  return { isValid, message: message.toString('utf8') };
-}
+// /**
+//  * Returns a payload obtained by encrypting and tagging the message string with a key produced from the given sk and pk
+//  * @param message
+//  * @param curveSk
+//  * @param curvePk
+//  */
+// export function encrypt( read notes above
+//   message: string,
+//   curveSk: curveSecretKey | Buffer,
+//   curvePk: curvePublicKey | Buffer
+// ): string {
+//   const messageBuf = Buffer.from(message, 'utf8');
+//   const curveSkBuf = _ensureBuffer(curveSk, 'Secret key');
+//   const curvePkBuf = _ensureBuffer(curvePk, 'Public key');
+//   const ciphertext = Buffer.allocUnsafe(
+//     messageBuf.length + sodium.crypto_box_MACBYTES
+//   );
+//   const nonce = Buffer.allocUnsafe(sodium.crypto_box_NONCEBYTES);
+//   sodium.randombytes_buf(nonce);
+//   sodium.crypto_box_easy(ciphertext, messageBuf, nonce, curvePkBuf as Buffer, curveSkBuf as Buffer);
+//   const payload = [ciphertext.toString('hex'), nonce.toString('hex')];
+//   return JSON.stringify(payload);
+// }
+
+// /**
+//  * Returns the message string obtained by decrypting the payload with the given sk and pk and authenticating the attached tag
+//  * @param payload
+//  * @param curveSk
+//  * @param curvePk
+//  */
+// export function decrypt(  read notes above
+//   payload: string,
+//   curveSk: curveSecretKey | Buffer,
+//   curvePk: curvePublicKey | Buffer
+// ): { isValid: boolean; message: string } {
+//   payload = JSON.parse(payload);
+//   const ciphertext = _ensureBuffer(payload[0], 'Tag ciphertext');
+//   const nonce = _ensureBuffer(payload[1], 'Tag nonce');
+//   const secretKey = _ensureBuffer(curveSk, 'Secret key');
+//   const publicKey = _ensureBuffer(curvePk, 'Public key');
+//   const message = Buffer.allocUnsafe(
+//     ciphertext.length - sodium.crypto_box_MACBYTES
+//   );
+//   const isValid = sodium.crypto_box_open_easy(
+//     message,
+//     ciphertext as Buffer,
+//     nonce as Buffer,
+//     publicKey as Buffer,
+//     secretKey as Buffer
+//   );
+//   return { isValid, message: message.toString('utf8') };
+// }
 
 /**
  * Returns an authentication tag obtained by encrypting the hash of the message string with a key produced from the given sk and pk
