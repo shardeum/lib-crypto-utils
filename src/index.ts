@@ -410,7 +410,10 @@ export function signObj(
  * @param sig
  * @param pk
  */
-export function verify(
+// verify fails on non hex strings. to re-export, we would need to make things safer,
+// or more flexible but also be mindful to not hurt performance of verfyObj which calls this
+// and does not need those extra features.   possibly just a verifyInternal clone could be used
+function verify(  //READ ABOVE , Do not export
   msg: string,
   sig: hexstring | Buffer,
   pk: publicKey | Buffer
