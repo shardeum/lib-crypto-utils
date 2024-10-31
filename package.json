@@ -1,5 +1,5 @@
 {
-  "name": "@shardus/crypto-utils",
+  "name": "@shardeum-foundation/crypto-utils",
   "version": "4.1.5",
   "description": "Provides simple crypto functions, as used by the ULC Project.",
   "main": "./build/src/index.js",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/shardus/shardus-crypto-utils"
+    "url": "https://gitlab.com/shardeum/shardus-crypto-utils"
   },
   "publishConfig": {
     "access": "public"
