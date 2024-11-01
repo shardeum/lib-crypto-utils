@@ -38,7 +38,7 @@
   },
   "homepage": "https://gitlab.com/shardus/shardus-crypto-utils#readme",
   "dependencies": {
-    "@shardus/types": "1.2.8",
+    "@shardeum-foundation/types": "1.2.22",
     "buffer-xor": "2.0.2",
     "fast-stable-stringify": "1.0.0",
     "sodium-native": "3.3.0"
