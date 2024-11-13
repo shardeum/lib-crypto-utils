@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/shardus/shardus-crypto-utils"
+    "url": "https://github.com/shardeum/lib-crypto-utils"
   },
   "publishConfig": {
     "access": "public"
@@ -34,11 +34,11 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/shardus/shardus-crypto-utils/issues"
+    "url": "https://github.com/shardeum/lib-crypto-utils/issues"
   },
-  "homepage": "https://gitlab.com/shardus/shardus-crypto-utils#readme",
+  "homepage": "https://github.com/shardeum/lib-crypto-utils#readme",
   "dependencies": {
-    "@shardus/types": "1.2.8",
+    "@shardus/types": "git+https://github.com/shardeum/lib-types#v1.2.8",
     "buffer-xor": "2.0.2",
     "fast-stable-stringify": "1.0.0",
     "sodium-native": "3.3.0"
