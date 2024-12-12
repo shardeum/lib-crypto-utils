@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/shardeum/lib-crypto-utils#readme",
   "dependencies": {
-    "@shardus/types": "git+https://github.com/shardeum/lib-types#dev",
+    "@shardus/types": "git+https://github.com/shardeum/lib-types#itn4",
     "buffer-xor": "2.0.2",
     "fast-stable-stringify": "1.0.0",
     "sodium-native": "3.3.0"
