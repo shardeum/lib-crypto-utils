@@ -1,6 +1,6 @@
 {
   "name": "@shardeum-foundation/lib-crypto-utils",
-  "version": "4.1.8-prerelease.0",
+  "version": "4.1.8-prerelease.1",
   "description": "Provides simple crypto functions, as used by the ULC Project.",
   "main": "./build/src/index.js",
   "types": "./build/src/index.d.ts",
