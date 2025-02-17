@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/shardeum/lib-crypto-utils#readme",
   "dependencies": {
-    "@shardeum-foundation/lib-types": "1.2.23",
+    "@shardeum-foundation/lib-types": "1.2.24-prerelease.0",
     "buffer-xor": "2.0.2",
     "fast-stable-stringify": "1.0.0",
     "sodium-native": "3.3.0"
