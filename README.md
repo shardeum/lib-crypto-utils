@@ -7,13 +7,13 @@ Shardus Crypto Utils is a tool providing a set of cryptographic utility function
 You can install Shardus Crypto Utils via npm:
 
 ```bash
-npm install @shardus/crypto-utils
+npm install @shardeum-foundation/lib-crypto-utils
 ```
 
 ## Usage
 
 ```JavaScript
-const crypto = require('shardus-crypto-utils')
+const crypto = require('@shardeum-foundation/lib-crypto-utils')
 
 // Module has a constructor that takes in a 32-byte hex key as required by node-sodium for generic hashing
 crypto.init('64f152869ca2d473e4ba64ab53f49ccdb2edae22da192c126850970e788af347')
