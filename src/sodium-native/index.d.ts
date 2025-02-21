@@ -12,7 +12,7 @@ declare module 'sodium-native' {
      *
      * * `input` should be a buffer of any size.
      */
-    update(input: Buffer): void;
+    update(input: Buffer): void
 
     /**
      * Finalize the instance.
@@ -21,25 +21,25 @@ declare module 'sodium-native' {
      *
      * The generated hash is stored in `output`.
      */
-    final(output: Buffer): void;
+    final(output: Buffer): void
   }
 
   export interface CryptoStreamChacha20XorWrap {
     /**
      * Encrypt the next message
      */
-    update(ciphertext: Buffer, message: Buffer): void;
+    update(ciphertext: Buffer, message: Buffer): void
 
     /**
      * Finalize the stream. Zeros out internal state.
      */
-    final(): void;
+    final(): void
   }
 
   export interface Xchacha20poly1305State {
-    _pad: Buffer;
-    nonce: Buffer;
-    k: Buffer;
+    _pad: Buffer
+    nonce: Buffer
+    k: Buffer
   }
 
   export interface CryptoOneTimeAuthWrap {
@@ -48,7 +48,7 @@ declare module 'sodium-native' {
      *
      * * `input` should be a buffer of any size.
      */
-    update(input: Buffer): void;
+    update(input: Buffer): void
 
     /**
      * Finalize the instance.
@@ -57,7 +57,7 @@ declare module 'sodium-native' {
      *
      * The generated hash is stored in `output`.
      */
-    final(output: Buffer): void;
+    final(output: Buffer): void
   }
 
   export interface CryptoHashSha256Wrap {
@@ -66,7 +66,7 @@ declare module 'sodium-native' {
      *
      * * `input` should be a buffer of any size.
      */
-    update(input: Buffer): void;
+    update(input: Buffer): void
 
     /**
      * Finalize the instance.
@@ -75,123 +75,120 @@ declare module 'sodium-native' {
      *
      * The generated hash is stored in `output`.
      */
-    final(output: Buffer): void;
+    final(output: Buffer): void
   }
 
-  export const crypto_aead_xchacha20poly1305_ietf_ABYTES: number;
-  export const crypto_aead_xchacha20poly1305_ietf_KEYBYTES: number;
+  export const crypto_aead_xchacha20poly1305_ietf_ABYTES: number
+  export const crypto_aead_xchacha20poly1305_ietf_KEYBYTES: number
   /** Note this is `Number.MAX_SAFE_INTEGER` for now */
-  export const crypto_aead_xchacha20poly1305_ietf_MESSAGEBYTES_MAX: number;
-  export const crypto_aead_xchacha20poly1305_ietf_NPUBBYTES: number;
-  export const crypto_aead_xchacha20poly1305_ietf_NSECBYTES: number;
-  export const crypto_core_ed25519_BYTES: number;
-  export const crypto_core_ed25519_NONREDUCEDSCALARBYTES: number;
-  export const crypto_core_ed25519_SCALARBYTES: number;
-  export const crypto_core_ed25519_UNIFORMBYTES: number;
-  export const crypto_secretstream_xchacha20poly1305_ABYTES: number;
-  export const crypto_secretstream_xchacha20poly1305_HEADERBYTES: number;
-  export const crypto_generichash_BYTES_MAX: number;
-  export const crypto_generichash_BYTES_MIN: number;
-  export const crypto_generichash_BYTES: number;
-  export const crypto_generichash_KEYBYTES_MAX: number;
-  export const crypto_generichash_KEYBYTES_MIN: number;
-  export const crypto_generichash_KEYBYTES: number;
-  export const crypto_pwhash_ALG_ARGON2I13: number;
-  export const crypto_pwhash_ALG_ARGON2ID13: number;
-  export const crypto_pwhash_ALG_DEFAULT: number;
-  export const crypto_pwhash_MEMLIMIT_INTERACTIVE: number;
-  export const crypto_pwhash_MEMLIMIT_MODERATE: number;
-  export const crypto_pwhash_MEMLIMIT_SENSITIVE: number;
-  export const crypto_pwhash_OPSLIMIT_INTERACTIVE: number;
-  export const crypto_pwhash_OPSLIMIT_MODERATE: number;
-  export const crypto_pwhash_OPSLIMIT_SENSITIVE: number;
-  export const crypto_scalarmult_ed25519_BYTES: number;
-  export const crypto_secretstream_xchacha20poly1305_KEYBYTES: number;
-  export const crypto_secretstream_xchacha20poly1305_MESSAGEBYTES_MAX: number;
-  export const crypto_scalarmult_ed25519_SCALARBYTES: number;
-  export const crypto_secretstream_xchacha20poly1305_TAG_FINAL: number;
-  export const crypto_secretstream_xchacha20poly1305_TAG_MESSAGE: number;
-  export const crypto_secretstream_xchacha20poly1305_TAG_PUSH: number;
-  export const crypto_secretstream_xchacha20poly1305_TAG_REKEY: number;
-  export const crypto_sign_PUBLICKEYBYTES: number;
-  export const crypto_sign_SECRETKEYBYTES: number;
-  export const crypto_sign_BYTES: number;
-  export const crypto_sign_SEEDBYTES: number;
-  export const crypto_auth_BYTES: number;
-  export const crypto_auth_KEYBYTES: number;
-  export const crypto_scalarmult_BYTES: number;
-  export const crypto_scalarmult_SCALARBYTES: number;
+  export const crypto_aead_xchacha20poly1305_ietf_MESSAGEBYTES_MAX: number
+  export const crypto_aead_xchacha20poly1305_ietf_NPUBBYTES: number
+  export const crypto_aead_xchacha20poly1305_ietf_NSECBYTES: number
+  export const crypto_core_ed25519_BYTES: number
+  export const crypto_core_ed25519_NONREDUCEDSCALARBYTES: number
+  export const crypto_core_ed25519_SCALARBYTES: number
+  export const crypto_core_ed25519_UNIFORMBYTES: number
+  export const crypto_secretstream_xchacha20poly1305_ABYTES: number
+  export const crypto_secretstream_xchacha20poly1305_HEADERBYTES: number
+  export const crypto_generichash_BYTES_MAX: number
+  export const crypto_generichash_BYTES_MIN: number
+  export const crypto_generichash_BYTES: number
+  export const crypto_generichash_KEYBYTES_MAX: number
+  export const crypto_generichash_KEYBYTES_MIN: number
+  export const crypto_generichash_KEYBYTES: number
+  export const crypto_pwhash_ALG_ARGON2I13: number
+  export const crypto_pwhash_ALG_ARGON2ID13: number
+  export const crypto_pwhash_ALG_DEFAULT: number
+  export const crypto_pwhash_MEMLIMIT_INTERACTIVE: number
+  export const crypto_pwhash_MEMLIMIT_MODERATE: number
+  export const crypto_pwhash_MEMLIMIT_SENSITIVE: number
+  export const crypto_pwhash_OPSLIMIT_INTERACTIVE: number
+  export const crypto_pwhash_OPSLIMIT_MODERATE: number
+  export const crypto_pwhash_OPSLIMIT_SENSITIVE: number
+  export const crypto_scalarmult_ed25519_BYTES: number
+  export const crypto_secretstream_xchacha20poly1305_KEYBYTES: number
+  export const crypto_secretstream_xchacha20poly1305_MESSAGEBYTES_MAX: number
+  export const crypto_scalarmult_ed25519_SCALARBYTES: number
+  export const crypto_secretstream_xchacha20poly1305_TAG_FINAL: number
+  export const crypto_secretstream_xchacha20poly1305_TAG_MESSAGE: number
+  export const crypto_secretstream_xchacha20poly1305_TAG_PUSH: number
+  export const crypto_secretstream_xchacha20poly1305_TAG_REKEY: number
+  export const crypto_sign_PUBLICKEYBYTES: number
+  export const crypto_sign_SECRETKEYBYTES: number
+  export const crypto_sign_BYTES: number
+  export const crypto_sign_SEEDBYTES: number
+  export const crypto_auth_BYTES: number
+  export const crypto_auth_KEYBYTES: number
+  export const crypto_scalarmult_BYTES: number
+  export const crypto_scalarmult_SCALARBYTES: number
   /** NOTE: Unofficial constant */
-  export const crypto_secretstream_xchacha20poly1305_TAGBYTES: number;
-  export const crypto_box_SEALBYTES: number;
-  export const crypto_box_PUBLICKEYBYTES: number;
-  export const crypto_box_SECRETKEYBYTES: number;
-  export const crypto_box_MACBYTES: number;
-  export const crypto_box_NONCEBYTES: number;
+  export const crypto_secretstream_xchacha20poly1305_TAGBYTES: number
+  export const crypto_box_SEALBYTES: number
+  export const crypto_box_PUBLICKEYBYTES: number
+  export const crypto_box_SECRETKEYBYTES: number
+  export const crypto_box_MACBYTES: number
+  export const crypto_box_NONCEBYTES: number
 
   /**
    * Zero out the data in `buffer`.
    */
-  export function sodium_memzero(buffer: Buffer): void;
+  export function sodium_memzero(buffer: Buffer): void
 
   /**
    * Lock the memory contained in `buffer`.
    */
-  export function sodium_mlock(buffer: Buffer): void;
+  export function sodium_mlock(buffer: Buffer): void
 
   /**
    * Unlock previously `sodium_mlock`ed memory contained in `buffer`. This will also `sodium_memzero` `buffer`.
    */
-  export function sodium_munlock(buffer: Buffer): void;
+  export function sodium_munlock(buffer: Buffer): void
 
   /**
    * Allocate a buffer of `size` which is memory protected. See [libsodium docs](https://download.libsodium.org/doc/memory_management#guarded-heap-allocations) for details. Be aware that many Buffer
    * methods may break the security guarantees of `sodium.sodium_malloc`'ed memory. To check if a `Buffer` is a "secure" buffer, you can call access the getter `buffer.secure` which will be `true`.
    */
-  export function sodium_malloc(size: number): Buffer;
+  export function sodium_malloc(size: number): Buffer
 
   /**
    * Make `buffer` allocated using `sodium.sodium_malloc` inaccessible, crashing the process if any access is attempted.
    * Note that this will have no effect for normal `Buffer`s.
    */
-  export function sodium_mprotect_noaccess(buffer: Buffer): void;
+  export function sodium_mprotect_noaccess(buffer: Buffer): void
 
   /**
    * Make `buffer` allocated using `sodium.sodium_malloc` read-only, crashing the process if any writing is attempted.
    * Note that this will have no effect for normal `Buffer`s.
    */
-  export function sodium_mprotect_readonly(buffer: Buffer): void;
+  export function sodium_mprotect_readonly(buffer: Buffer): void
 
   /**
    * Make `buffer` allocated using `sodium.sodium_malloc` read-write, undoing `sodium_mprotect_noaccess` or `sodium_mprotect_readonly`.
    * Note that this will have no effect for normal `Buffer`s.
    */
-  export function sodium_mprotect_readwrite(buffer: Buffer): void;
+  export function sodium_mprotect_readwrite(buffer: Buffer): void
 
   /**
    * Generate a random 32-bit unsigned integer `[0, 0xffffffff]` (both inclusive)
    */
-  export function randombytes_random(): number;
+  export function randombytes_random(): number
 
   /**
    * Generate a random 32-bit unsigned integer `[0, upper_bound)` (last exclusive).
    * `upper_bound` must be `0xffffffff` at most.
    */
-  export function randombytes_uniform(upper_bound: number): number;
+  export function randombytes_uniform(upper_bound: number): number
 
   /**
    * Fill `buffer` with random data.
    */
-  export function randombytes_buf(buffer: Buffer): void;
+  export function randombytes_buf(buffer: Buffer): void
 
   /**
    * Fill `buffer` with random data, generated from `seed`.
    * `seed` must be a Buffer of at least `sodium.randombytes_SEEDBYTES` length
    */
-  export function randombytes_buf_deterministic(
-    buffer: Buffer,
-    seed: Buffer
-  ): void;
+  export function randombytes_buf_deterministic(buffer: Buffer, seed: Buffer): void
 
   /**
    * Compare `b1` with `b2`, in **constant-time** for `b1.length`.
@@ -201,7 +198,7 @@ declare module 'sodium-native' {
    *
    * Returns `true` when equal, otherwise `false`.
    */
-  export function sodium_memcmp(b1: Buffer, b2: Buffer): boolean;
+  export function sodium_memcmp(b1: Buffer, b2: Buffer): boolean
 
   /**
    * Compare `b1` with `b2`, regarding either as little-endian encoded number.
@@ -212,7 +209,7 @@ declare module 'sodium-native' {
    * Returns `1`, `0` or `-1` on whether `b1` is greater, equal or less than `b2`.
    * This is the same scheme as `Array.prototype.sort` expect.
    */
-  export function sodium_compare(b1: Buffer, b2: Buffer): 1 | 0 | -1;
+  export function sodium_compare(b1: Buffer, b2: Buffer): 1 | 0 | -1
 
   /**
    * Adds `b` to `a` (wrapping), regarding either as little-endian encoded number,
@@ -221,7 +218,7 @@ declare module 'sodium-native' {
    * * `a` must be `Buffer`
    * * `b` must be `Buffer` and must be `a.length` bytes
    */
-  export function sodium_add(a: Buffer, b: Buffer): void;
+  export function sodium_add(a: Buffer, b: Buffer): void
 
   /**
    * Subtracts `b` from `a` (wrapping), regarding either as little-endian encoded
@@ -230,7 +227,7 @@ declare module 'sodium-native' {
    * * `a` must be `Buffer`
    * * `b` must be `Buffer` and must be `a.length` bytes
    */
-  export function sodium_sub(a: Buffer, b: Buffer): void;
+  export function sodium_sub(a: Buffer, b: Buffer): void
 
   /**
    * Increment `buf` as a little-endian number. This operation is **constant-time**
@@ -238,7 +235,7 @@ declare module 'sodium-native' {
    *
    * * `buf` must be `Buffer`
    */
-  export function sodium_increment(buf: Buffer): void;
+  export function sodium_increment(buf: Buffer): void
 
   /**
    * Test whether `buf` is all zero for `len` bytes. This operation is
@@ -248,7 +245,7 @@ declare module 'sodium-native' {
    *
    * Returns `true` if all `len` bytes are zero, otherwise `false`.
    */
-  export function sodium_is_zero(buf: Buffer, len: number): boolean;
+  export function sodium_is_zero(buf: Buffer, len: number): boolean
 
   /**
    * Pad `buf` with random data from index `unpaddedLength` up to closest multiple of
@@ -260,11 +257,7 @@ declare module 'sodium-native' {
    *
    * Returns the length of the padded data (so you may `.slice` the buffer to here).
    */
-  export function sodium_pad(
-    buf: Buffer,
-    unpaddedLength: number,
-    blocksize: number
-  ): number;
+  export function sodium_pad(buf: Buffer, unpaddedLength: number, blocksize: number): number
 
   /**
    * Calculate `unpaddedLength` from a padded `buf` with `blocksize`
@@ -275,11 +268,7 @@ declare module 'sodium-native' {
    *
    * Returns the length of the unpadded data (so you may `.slice` the buffer to here).
    */
-  export function sodium_unpad(
-    buf: Buffer,
-    paddedLength: number,
-    blocksize: number
-  ): number;
+  export function sodium_unpad(buf: Buffer, paddedLength: number, blocksize: number): number
 
   /**
    * Create a new keypair based on a seed.
@@ -290,11 +279,7 @@ declare module 'sodium-native' {
    *
    * The generated public and secret key will be stored in passed in buffers.
    */
-  export function crypto_sign_seed_keypair(
-    publicKey: Buffer,
-    secretKey: Buffer,
-    seed: Buffer
-  ): void;
+  export function crypto_sign_seed_keypair(publicKey: Buffer, secretKey: Buffer, seed: Buffer): void
 
   /**
    * Create a new keypair.
@@ -304,10 +289,7 @@ declare module 'sodium-native' {
    *
    * The generated public and secret key will be stored in passed in buffers.
    */
-  export function crypto_sign_keypair(
-    publicKey: Buffer,
-    secretKey: Buffer
-  ): void;
+  export function crypto_sign_keypair(publicKey: Buffer, secretKey: Buffer): void
 
   /**
    * Sign a message.
@@ -318,11 +300,7 @@ declare module 'sodium-native' {
    *
    * The generated signed message will be stored in `signedMessage`.
    */
-  export function crypto_sign(
-    signedMessage: Buffer,
-    message: Buffer,
-    secretKey: Buffer
-  ): void;
+  export function crypto_sign(signedMessage: Buffer, message: Buffer, secretKey: Buffer): void
 
   /**
    * Verify and open a message.
@@ -334,11 +312,7 @@ declare module 'sodium-native' {
    * Will return `true` if the message could be verified. Otherwise `false`.
    * If verified the originally signed message is stored in the `message` buffer.
    */
-  export function crypto_sign_open(
-    message: Buffer,
-    signedMessage: Buffer,
-    publicKey: Buffer
-  ): boolean;
+  export function crypto_sign_open(message: Buffer, signedMessage: Buffer, publicKey: Buffer): boolean
 
   /**
    * Same as `crypto_sign` except it only stores the signature.
@@ -349,11 +323,7 @@ declare module 'sodium-native' {
    *
    * The generated signature is stored in `signature`.
    */
-  export function crypto_sign_detached(
-    signature: Buffer,
-    message: Buffer,
-    secretKey: Buffer
-  ): void;
+  export function crypto_sign_detached(signature: Buffer, message: Buffer, secretKey: Buffer): void
 
   /**
    * Verify a signature.
@@ -364,11 +334,7 @@ declare module 'sodium-native' {
    *
    * Will return `true` if the message could be verified. Otherwise `false`.
    */
-  export function crypto_sign_verify_detached(
-    signature: Buffer,
-    message: Buffer,
-    publicKey: Buffer
-  ): boolean;
+  export function crypto_sign_verify_detached(signature: Buffer, message: Buffer, publicKey: Buffer): boolean
 
   /**
    * Convert an ed25519 public key to curve25519 (which can be used with `box` and `scalarmult`)
@@ -376,10 +342,7 @@ declare module 'sodium-native' {
    * * `curve_pk` should be a buffer with length `crypto_box_PUBLICKEYBYTES`
    * * `ed_pk` should be a buffer with length `crypto_sign_PUBLICKEYBYTES`
    */
-  export function crypto_sign_ed25519_pk_to_curve25519(
-    curve_pk: Buffer,
-    ed_pk: Buffer
-  ): void;
+  export function crypto_sign_ed25519_pk_to_curve25519(curve_pk: Buffer, ed_pk: Buffer): void
 
   /**
    * Convert an ed25519 secret key to curve25519 (which can be used with `box` and `scalarmult`)
@@ -387,10 +350,7 @@ declare module 'sodium-native' {
    * * `curve_sk` should be a buffer with length `crypto_box_SECRETKEYBYTES`
    * * `ed_sk` should be a buffer with length `crypto_sign_SECRETKEYBYTES`
    */
-  export function crypto_sign_ed25519_sk_to_curve25519(
-    curve_sk: Buffer,
-    ed_sk: Buffer
-  ): void;
+  export function crypto_sign_ed25519_sk_to_curve25519(curve_sk: Buffer, ed_sk: Buffer): void
 
   /**
    * Extract an ed25519 public key from an ed25519 secret key
@@ -398,7 +358,7 @@ declare module 'sodium-native' {
    * * `pk` must be `Buffer` of at least `crypto_sign_PUBLICKEYBYTES` bytes
    * * `sk` must be `Buffer` of at least `crypto_sign_SECRETKEYBYTES` bytes
    */
-  export function crypto_sign_ed25519_sk_to_pk(pk: Buffer, sk: Buffer): void;
+  export function crypto_sign_ed25519_sk_to_pk(pk: Buffer, sk: Buffer): void
 
   /**
    * Hash a value with an optional key using the generichash method.
@@ -411,20 +371,12 @@ declare module 'sodium-native' {
    *
    * Also exposes `crypto_generichash_BYTES` and `crypto_generichash_KEYBYTES` that can be used as "default" buffer sizes.
    */
-  export function crypto_generichash(
-    output: Buffer,
-    input: Buffer,
-    key?: Buffer
-  ): void;
+  export function crypto_generichash(output: Buffer, input: Buffer, key?: Buffer): void
 
   /**
    * Same as `crypto_generichash` except this hashes an array of buffers instead of a single one.
    */
-  export function crypto_generichash_batch(
-    output: Buffer,
-    inputArray: Buffer[],
-    key?: Buffer
-  ): void;
+  export function crypto_generichash_batch(output: Buffer, inputArray: Buffer[], key?: Buffer): void
 
   /**
    * Create a generichash instance that can hash a stream of input buffers.
@@ -432,10 +384,7 @@ declare module 'sodium-native' {
    * * `key` is an optional buffer as above.
    * * `outputLength` the buffer size of your output.
    */
-  export function crypto_generichash_instance(
-    key?: Buffer,
-    outputLength?: number
-  ): CryptoGenericHashWrap;
+  export function crypto_generichash_instance(key?: Buffer, outputLength?: number): CryptoGenericHashWrap
 
   /**
    * Create a new keypair based on a seed.
@@ -446,11 +395,7 @@ declare module 'sodium-native' {
    *
    * The generated public and secret key will be stored in passed in buffers.
    */
-  export function crypto_box_seed_keypair(
-    publicKey: Buffer,
-    secretKey: Buffer,
-    seed: Buffer
-  ): void;
+  export function crypto_box_seed_keypair(publicKey: Buffer, secretKey: Buffer, seed: Buffer): void
 
   /**
    * Create a new keypair.
@@ -460,10 +405,7 @@ declare module 'sodium-native' {
    *
    * The generated public and secret key will be stored in passed in buffers.
    */
-  export function crypto_box_keypair(
-    publicKey: Buffer,
-    secretKey: Buffer
-  ): void;
+  export function crypto_box_keypair(publicKey: Buffer, secretKey: Buffer): void
 
   /**
    * Encrypt a message.
@@ -484,7 +426,7 @@ declare module 'sodium-native' {
     nonce: Buffer,
     publicKey: Buffer,
     secretKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Same as `crypto_box_detached` except it encodes the mac in the message.
@@ -503,7 +445,7 @@ declare module 'sodium-native' {
     nonce: Buffer,
     publicKey: Buffer,
     secretKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Decrypt a message.
@@ -526,7 +468,7 @@ declare module 'sodium-native' {
     nonce: Buffer,
     publicKey: Buffer,
     secretKey: Buffer
-  ): boolean;
+  ): boolean
 
   /**
    * Decrypt a message encoded with the easy method.
@@ -547,7 +489,7 @@ declare module 'sodium-native' {
     nonce: Buffer,
     publicKey: Buffer,
     secretKey: Buffer
-  ): boolean;
+  ): boolean
 
   /**
    * Encrypt a message in a sealed box using a throwaway keypair.
@@ -558,11 +500,7 @@ declare module 'sodium-native' {
    * * `message` should be a buffer with any length.
    * * `publicKey` should be the receipent's public key.
    */
-  export function crypto_box_seal(
-    ciphertext: Buffer,
-    message: Buffer,
-    publicKey: Buffer
-  ): void;
+  export function crypto_box_seal(ciphertext: Buffer, message: Buffer, publicKey: Buffer): void
 
   /**
    * Decrypt a message encoded with the sealed box method.
@@ -582,7 +520,7 @@ declare module 'sodium-native' {
     ciphertext: Buffer,
     publicKey: Buffer,
     secretKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Encrypt a message.
@@ -601,7 +539,7 @@ declare module 'sodium-native' {
     message: Buffer,
     nonce: Buffer,
     secretKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Same as `crypto_secretbox_detached` except it encodes the mac in the message.
@@ -616,7 +554,7 @@ declare module 'sodium-native' {
     message: Buffer,
     nonce: Buffer,
     secretKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Decrypt a message.
@@ -637,7 +575,7 @@ declare module 'sodium-native' {
     mac: Buffer,
     nonce: Buffer,
     secretKey: Buffer
-  ): boolean;
+  ): boolean
 
   /**
    * Decrypt a message encoded with the easy method.
@@ -656,7 +594,7 @@ declare module 'sodium-native' {
     ciphertext: Buffer,
     nonce: Buffer,
     secretKey: Buffer
-  ): boolean;
+  ): boolean
 
   /**
    * Generate a new encryption key.
@@ -665,7 +603,7 @@ declare module 'sodium-native' {
    *
    * The generated key is stored in `key`.
    */
-  export function crypto_aead_xchacha20poly1305_ietf_keygen(key: Buffer): void;
+  export function crypto_aead_xchacha20poly1305_ietf_keygen(key: Buffer): void
 
   /**
    * Encrypt a message with (`npub`, `key`) and optional additional data `ad`.
@@ -688,7 +626,7 @@ declare module 'sodium-native' {
     nullValue: null,
     npub: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Decrypt a message with (`npub`, `key`) and optional additional data `ad`.
@@ -713,7 +651,7 @@ declare module 'sodium-native' {
     ad: Buffer | null,
     npub: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Encrypt a message with (`npub`, `key`) and optional additional data `ad`.
@@ -738,7 +676,7 @@ declare module 'sodium-native' {
     nullValue: null,
     npub: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Decrypt a message with (`npub`, `key`) and optional additional data `ad`.
@@ -763,7 +701,7 @@ declare module 'sodium-native' {
     ad: Buffer | null,
     npub: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Generate random data based on a nonce and key into the ciphertext.
@@ -774,11 +712,7 @@ declare module 'sodium-native' {
    *
    * The generated data is stored in `ciphertext`.
    */
-  export function crypto_stream(
-    ciphertext: Buffer,
-    nonce: Buffer,
-    key: Buffer
-  ): void;
+  export function crypto_stream(ciphertext: Buffer, nonce: Buffer, key: Buffer): void
 
   /**
    * Encrypt, but *not* authenticate, a message based on a nonce and key
@@ -795,12 +729,7 @@ declare module 'sodium-native' {
    * to encrypt/decrypt with ChaCha20 instead.
    *
    */
-  export function crypto_stream_xor(
-    ciphertext: Buffer,
-    message: Buffer,
-    nonce: Buffer,
-    key: Buffer
-  ): void;
+  export function crypto_stream_xor(ciphertext: Buffer, message: Buffer, nonce: Buffer, key: Buffer): void
 
   /**
    * Encrypt, but *not* authenticate, a message based on a nonce and key
@@ -818,7 +747,7 @@ declare module 'sodium-native' {
     message: Buffer,
     nonce: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * A streaming instance to the `crypto_stream_xor` api. Pass a nonce and key in the constructor.
@@ -826,19 +755,13 @@ declare module 'sodium-native' {
    * Encryption defaults to XSalsa20, use `crypto_stream_chacha20_xor_instance` if
    * you want to encrypt/decrypt with ChaCha20 instead.
    */
-  export function crypto_stream_xor_instance(
-    nonce: Buffer,
-    key: Buffer
-  ): CryptoStreamChacha20XorWrap;
+  export function crypto_stream_xor_instance(nonce: Buffer, key: Buffer): CryptoStreamChacha20XorWrap
 
   /**
    *
    * A streaming instance to the `crypto_stream_xor` api. Pass a nonce and key in the constructor.
    */
-  export function crypto_stream_chacha20_xor_instance(
-    nonce: Buffer,
-    key: Buffer
-  ): CryptoStreamChacha20XorWrap;
+  export function crypto_stream_chacha20_xor_instance(nonce: Buffer, key: Buffer): CryptoStreamChacha20XorWrap
 
   /**
    * Create an authentication token.
@@ -849,7 +772,7 @@ declare module 'sodium-native' {
    *
    * The generated token is stored in `output`.
    */
-  export function crypto_auth(output: Buffer, input: Buffer, key: Buffer): void;
+  export function crypto_auth(output: Buffer, input: Buffer, key: Buffer): void
 
   /**
    * Verify a token.
@@ -861,11 +784,7 @@ declare module 'sodium-native' {
    * Returns `true` if the token could be verified. Otherwise `false`.
    *
    */
-  export function crypto_auth_verify(
-    output: Buffer,
-    input: Buffer,
-    key: Buffer
-  ): boolean;
+  export function crypto_auth_verify(output: Buffer, input: Buffer, key: Buffer): boolean
 
   /**
    * Generate a new encryption key.
@@ -877,7 +796,7 @@ declare module 'sodium-native' {
    *
    * Create a new stream state. Returns an opaque object used in the next methods.
    */
-  export function crypto_secretstream_xchacha20poly1305_state_new(): Xchacha20poly1305State;
+  export function crypto_secretstream_xchacha20poly1305_state_new(): Xchacha20poly1305State
 
   /**
    * Initialise `state` from the writer side with message `header` and
@@ -892,7 +811,7 @@ declare module 'sodium-native' {
     state: Xchacha20poly1305State,
     header: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Encrypt a message with a certain tag and optional additional data `ad`.
@@ -913,7 +832,7 @@ declare module 'sodium-native' {
     message: Buffer,
     ad: Buffer | null,
     tag: Buffer
-  ): void;
+  ): void
 
   /**
    * Initialise `state` from the reader side with message `header` and
@@ -928,7 +847,7 @@ declare module 'sodium-native' {
     state: Xchacha20poly1305State,
     header: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Decrypt a message with optional additional data `ad`, and write message tag to
@@ -949,14 +868,12 @@ declare module 'sodium-native' {
     tag: Buffer,
     ciphertext: Buffer,
     ad: Buffer | null
-  ): void;
+  ): void
 
   /**
    * Rekey the opaque `state` object.
    */
-  export function crypto_secretstream_xchacha20poly1305_rekey(
-    state: Xchacha20poly1305State
-  ): void;
+  export function crypto_secretstream_xchacha20poly1305_rekey(state: Xchacha20poly1305State): void
 
   /**
    * Create a authentication token based on a onetime key.
@@ -967,11 +884,7 @@ declare module 'sodium-native' {
    *
    * The generated token is stored in `output`.
    */
-  export function crypto_onetimeauth(
-    output: Buffer,
-    input: Buffer,
-    key: Buffer
-  ): void;
+  export function crypto_onetimeauth(output: Buffer, input: Buffer, key: Buffer): void
 
   /**
    * Verify a token.
@@ -982,20 +895,14 @@ declare module 'sodium-native' {
    *
    * Returns `true` if the token could be verified. Otherwise `false`.
    */
-  export function crypto_onetimeauth_verify(
-    output: Buffer,
-    input: Buffer,
-    key: Buffer
-  ): boolean;
+  export function crypto_onetimeauth_verify(output: Buffer, input: Buffer, key: Buffer): boolean
 
   /**
    * Create an instance that create a token from a onetime key and a stream of input data.
    *
    * * `key` should be a buffer of length `crypto_onetimeauth_KEYBYTES`.
    */
-  export function crypto_onetimeauth_instance(
-    key: Buffer
-  ): CryptoOneTimeAuthWrap;
+  export function crypto_onetimeauth_instance(key: Buffer): CryptoOneTimeAuthWrap
 
   /**
    * Create a password hash.
@@ -1031,7 +938,7 @@ declare module 'sodium-native' {
     opslimit: number,
     memlimit: number,
     algorithm: number
-  ): void;
+  ): void
 
   /**
    * Create a password hash with a random salt.
@@ -1048,7 +955,7 @@ declare module 'sodium-native' {
     password: Buffer,
     opslimit: number,
     memlimit: number
-  ): void;
+  ): void
 
   /**
    * Verify a password hash generated with the above method.
@@ -1058,10 +965,7 @@ declare module 'sodium-native' {
    *
    * Returns `true` if the hash could be verified with the settings contained in `str`. Otherwise `false`.
    */
-  export function crypto_pwhash_str_verify(
-    str: Buffer,
-    password: Buffer
-  ): boolean;
+  export function crypto_pwhash_str_verify(str: Buffer, password: Buffer): boolean
 
   /**
    * Check if a password hash needs rehash, either because the default algorithm
@@ -1074,11 +978,7 @@ declare module 'sodium-native' {
    * Returns `true` if the hash should be rehashed the settings contained in `str`.
    * Otherwise `false` if it is still good.
    */
-  export function crypto_pwhash_str_needs_rehash(
-    hash: Buffer,
-    opslimit: number,
-    memlimit: number
-  ): boolean;
+  export function crypto_pwhash_str_needs_rehash(hash: Buffer, opslimit: number, memlimit: number): boolean
 
   /**
    * Just like `crypto_pwhash` but will run password hashing on a seperate worker so it will not block the event loop. `callback(err)` will receive any errors from the hashing but all argument
@@ -1093,7 +993,7 @@ declare module 'sodium-native' {
     memlimit: number,
     algorithm: number,
     callback: (err: Error | null) => void
-  ): void;
+  ): void
 
   /**
    * Just like `crypto_pwhash_str` but will run password hashing on a seperate worker so it will not block the event loop. `callback(err)` will receive any errors from the hashing but all argument
@@ -1106,7 +1006,7 @@ declare module 'sodium-native' {
     opslimit: number,
     memlimit: number,
     callback: (err: Error | null) => void
-  ): void;
+  ): void
 
   /**
    * Just like `crypto_pwhash_str_verify` but will run password hashing on a seperate worker so it will not block the event loop. `callback(err, bool)` will receive any errors from the hashing but
@@ -1117,7 +1017,7 @@ declare module 'sodium-native' {
     str: Buffer,
     password: Buffer,
     callback: (err: Error | null, bool: boolean) => void
-  ): void;
+  ): void
 
   /**
    * Create a key exchange key pair.
@@ -1125,7 +1025,7 @@ declare module 'sodium-native' {
    * * `publicKey` should be a buffer of length `crypto_kx_PUBLICKEYBYTES`.
    * * `secretKey` should be a buffer of length `crypto_kx_SECRETKEYBYTES`.
    */
-  export function crypto_kx_keypair(publicKey: Buffer, secretKey: Buffer): void;
+  export function crypto_kx_keypair(publicKey: Buffer, secretKey: Buffer): void
 
   /**
    * Create a key exchange key pair based on a seed.
@@ -1134,11 +1034,7 @@ declare module 'sodium-native' {
    * * `secretKey` should be a buffer of length `crypto_kx_SECRETKEYBYTES`.
    * * `seed` should be a buffer of length `crypto_kx_SEEDBYTES`
    */
-  export function crypto_kx_seed_keypair(
-    publicKey: Buffer,
-    secretKey: Buffer,
-    seed: Buffer
-  ): void;
+  export function crypto_kx_seed_keypair(publicKey: Buffer, secretKey: Buffer, seed: Buffer): void
 
   /**
    * Generate a session receive and transmission key for a client.
@@ -1157,7 +1053,7 @@ declare module 'sodium-native' {
     clientPublicKey: Buffer,
     clientSecretKey: Buffer,
     serverPublicKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Generate a session receive and transmission key for a server.
@@ -1176,7 +1072,7 @@ declare module 'sodium-native' {
     serverPublicKey: Buffer,
     serverSecretKey: Buffer,
     clientPublicKey: Buffer
-  ): void;
+  ): void
 
   /**
    * Create a scalar multiplication public key based on a secret key
@@ -1186,10 +1082,7 @@ declare module 'sodium-native' {
    *
    * The generated public key is stored in `publicKey`.
    */
-  export function crypto_scalarmult_base(
-    publicKey: Buffer,
-    secretKey: Buffer
-  ): void;
+  export function crypto_scalarmult_base(publicKey: Buffer, secretKey: Buffer): void
 
   /**
    * Derive a shared secret from a local secret key and a remote public key.
@@ -1200,11 +1093,7 @@ declare module 'sodium-native' {
    *
    * The generated shared secret is stored in `sharedSecret`.
    */
-  export function crypto_scalarmult(
-    sharedSecret: Buffer,
-    secretKey: Buffer,
-    remotePublicKey: Buffer
-  ): void;
+  export function crypto_scalarmult(sharedSecret: Buffer, secretKey: Buffer, remotePublicKey: Buffer): void
 
   /**
    * > The crypto_core_ed25519_is_valid_point() function checks that p represents
@@ -1215,7 +1104,7 @@ declare module 'sodium-native' {
    *
    * Returns `true` or `false`
    */
-  export function crypto_core_ed25519_is_valid_point(p: Buffer): boolean;
+  export function crypto_core_ed25519_is_valid_point(p: Buffer): boolean
 
   /**
    * Maps a `crypto_core_ed25519_UNIFORMBYTES` bytes vector (usually the output of
@@ -1227,7 +1116,7 @@ declare module 'sodium-native' {
    * * `p` must be `Buffer` of at least `crypto_core_ed25519_BYTES` bytes
    * * `r` must be `Buffer` of at least `crypto_core_ed25519_UNIFORMBYTES` bytes
    */
-  export function crypto_core_ed25519_from_uniform(p: Buffer, r: Buffer): void;
+  export function crypto_core_ed25519_from_uniform(p: Buffer, r: Buffer): void
 
   /**
    * Multiply point `p` by scalar `n` and store its compressed representation in `q`.
@@ -1238,11 +1127,7 @@ declare module 'sodium-native' {
    *
    * Note this function will throw if `n` is zero or `p` is an invalid curve point.
    */
-  export function crypto_scalarmult_ed25519(
-    q: Buffer,
-    n: Buffer,
-    p: Buffer
-  ): void;
+  export function crypto_scalarmult_ed25519(q: Buffer, n: Buffer, p: Buffer): void
 
   /**
    * Multiply the basepoint by scalar `n` and store its compressed representation in
@@ -1253,7 +1138,7 @@ declare module 'sodium-native' {
    *
    * Note this function will throw if `n` is zero
    */
-  export function crypto_scalarmult_ed25519_base(q: Buffer, n: Buffer): void;
+  export function crypto_scalarmult_ed25519_base(q: Buffer, n: Buffer): void
 
   /**
    * Multiply point `p` by scalar `n` and store its compressed representation in `q`.
@@ -1265,11 +1150,7 @@ declare module 'sodium-native' {
    *
    * Note this function will throw if `n` is zero or `p` is an invalid curve point.
    */
-  export function crypto_scalarmult_ed25519_noclamp(
-    q: Buffer,
-    n: Buffer,
-    p: Buffer
-  ): void;
+  export function crypto_scalarmult_ed25519_noclamp(q: Buffer, n: Buffer, p: Buffer): void
 
   /**
    * Multiply the basepoint by scalar `n` and store its compressed representation in
@@ -1280,10 +1161,7 @@ declare module 'sodium-native' {
    *
    * Note this function will throw if `n` is zero
    */
-  export function crypto_scalarmult_ed25519_base_noclamp(
-    q: Buffer,
-    n: Buffer
-  ): void;
+  export function crypto_scalarmult_ed25519_base_noclamp(q: Buffer, n: Buffer): void
 
   /**
    * Add point `q` to `p`, storing the result to `r`.
@@ -1294,11 +1172,7 @@ declare module 'sodium-native' {
    *
    * Will throw if `p`, `q` are not valid curve points
    */
-  export function crypto_core_ed25519_add(
-    r: Buffer,
-    p: Buffer,
-    q: Buffer
-  ): void;
+  export function crypto_core_ed25519_add(r: Buffer, p: Buffer, q: Buffer): void
 
   /**
    * Subtract point `q` to `p`, storing the result to `r`.
@@ -1309,18 +1183,14 @@ declare module 'sodium-native' {
    *
    * Will throw if `p`, `q` are not valid curve points
    */
-  export function crypto_core_ed25519_sub(
-    r: Buffer,
-    p: Buffer,
-    q: Buffer
-  ): void;
+  export function crypto_core_ed25519_sub(r: Buffer, p: Buffer, q: Buffer): void
 
   /**
    * Generate random point, storing it in `r`.
    *
    * * `r` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_random(r: Buffer): void;
+  export function crypto_core_ed25519_scalar_random(r: Buffer): void
 
   /**
    * Reduce `s mod L`, storing it in `r`.
@@ -1328,7 +1198,7 @@ declare module 'sodium-native' {
    * * `r` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    * * `s` must be `Buffer` of at least `crypto_core_ed25519_NONREDUCEDSCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_reduce(r: Buffer, s: Buffer): void;
+  export function crypto_core_ed25519_scalar_reduce(r: Buffer, s: Buffer): void
 
   /**
    * Find `recip` such that `s * recip = 1 (mod L)`, storing it in `recip`.
@@ -1336,10 +1206,7 @@ declare module 'sodium-native' {
    * * `recip` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    * * `s` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_invert(
-    recip: Buffer,
-    s: Buffer
-  ): void;
+  export function crypto_core_ed25519_scalar_invert(recip: Buffer, s: Buffer): void
 
   /**
    * Find `neg` such that `s + neg = 0 (mod L)`, storing it in `recip`.
@@ -1347,10 +1214,7 @@ declare module 'sodium-native' {
    * * `recip` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    * * `s` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_negate(
-    neg: Buffer,
-    s: Buffer
-  ): void;
+  export function crypto_core_ed25519_scalar_negate(neg: Buffer, s: Buffer): void
 
   /**
    * Find `comp` such that `s + comp = 1 (mod L)`, storing it in `recip`.
@@ -1358,10 +1222,7 @@ declare module 'sodium-native' {
    * * `comp` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    * * `s` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_complement(
-    comp: Buffer,
-    s: Buffer
-  ): void;
+  export function crypto_core_ed25519_scalar_complement(comp: Buffer, s: Buffer): void
 
   /**
    * Add `x` and `y` such that `x + y = z (mod L)`, storing it in `z`.
@@ -1370,11 +1231,7 @@ declare module 'sodium-native' {
    * * `y` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    * * `z` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_add(
-    z: Buffer,
-    x: Buffer,
-    y: Buffer
-  ): void;
+  export function crypto_core_ed25519_scalar_add(z: Buffer, x: Buffer, y: Buffer): void
 
   /**
    * Subtract `x` and `y` such that `x - y = z (mod L)`, storing it in `z`.
@@ -1383,11 +1240,7 @@ declare module 'sodium-native' {
    * * `y` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    * * `z` must be `Buffer` of at least `crypto_core_ed25519_SCALARBYTES` bytes
    */
-  export function crypto_core_ed25519_scalar_sub(
-    z: Buffer,
-    x: Buffer,
-    y: Buffer
-  ): void;
+  export function crypto_core_ed25519_scalar_sub(z: Buffer, x: Buffer, y: Buffer): void
 
   /**
    * Hash a value to a short hash based on a key.
@@ -1398,18 +1251,14 @@ declare module 'sodium-native' {
    *
    * The generated short hash is stored in `output`.
    */
-  export function crypto_shorthash(
-    output: Buffer,
-    input: Buffer,
-    key: Buffer
-  ): void;
+  export function crypto_shorthash(output: Buffer, input: Buffer, key: Buffer): void
 
   /**
    * Generate a new master key.
    *
    * * `key` should be a buffer of length `crypto_kdf_KEYBYTES`
    */
-  export function crypto_kdf_keygen(key: Buffer): void;
+  export function crypto_kdf_keygen(key: Buffer): void
 
   /**
    * Derive a new key from a master key.
@@ -1424,7 +1273,7 @@ declare module 'sodium-native' {
     subkeyId: number,
     context: Buffer,
     key: Buffer
-  ): void;
+  ): void
 
   /**
    * Hash a value to a short hash based on a key.
@@ -1434,12 +1283,12 @@ declare module 'sodium-native' {
    *
    * The generated short hash is stored in `output`.
    */
-  export function crypto_hash_sha256(output: Buffer, input: Buffer): void;
+  export function crypto_hash_sha256(output: Buffer, input: Buffer): void
 
   /**
    * Create an instance that has stream of input data to sha256.
    */
-  export function crypto_hash_sha256_instance(): CryptoHashSha256Wrap;
+  export function crypto_hash_sha256_instance(): CryptoHashSha256Wrap
 
   /**
    * Hash a value to a short hash based on a key.
@@ -1449,12 +1298,12 @@ declare module 'sodium-native' {
    *
    * The generated short hash is stored in `output`.
    */
-  export function crypto_hash_sha512(output: Buffer, input: Buffer): void;
+  export function crypto_hash_sha512(output: Buffer, input: Buffer): void
 
   /**
    * Create an instance that has stream of input data to sha512.
    */
-  export function crypto_hash_sha512_instance(): CryptoHashSha512Wrap;
+  export function crypto_hash_sha512_instance(): CryptoHashSha512Wrap
 
   export interface CryptoHashSha512Wrap {
     /**
@@ -1462,7 +1311,7 @@ declare module 'sodium-native' {
      *
      * * `input` should be a buffer of any size.
      */
-    update(input: Buffer): void;
+    update(input: Buffer): void
 
     /**
      * Finalize the instance.
@@ -1471,6 +1320,6 @@ declare module 'sodium-native' {
      *
      * The generated hash is stored in `output`.
      */
-    final(output: Buffer): void;
+    final(output: Buffer): void
   }
 }
