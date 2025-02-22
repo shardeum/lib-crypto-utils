@@ -43,7 +43,7 @@ const testSigningObjWithoutProps = () => {
 }
 
 const testSigningArrWithItems = () => {
-  const arrWithItems = [ 'item1', 'item2' ]
+  const arrWithItems = ['item1', 'item2']
   return trySigning(arrWithItems, false)
 }
 
