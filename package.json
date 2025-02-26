@@ -44,7 +44,7 @@
     "@shardeum-foundation/lib-types": "1.2.24-prerelease.2",
     "buffer-xor": "2.0.2",
     "fast-stable-stringify": "1.0.0",
-    "sodium-native": "3.3.0"
+    "sodium-native": "4.3.1"
   },
   "devDependencies": {
     "@types/buffer-xor": "2.0.0",
