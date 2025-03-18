@@ -13,10 +13,7 @@
     "plugin:no-unsanitized/DOM",
     "prettier"
   ],
-  "ignorePatterns": [
-    "build/",
-    "test/test-*"
-  ],
+  "ignorePatterns": ["build/", "test/test-*"],
   "rules": {
     "no-empty": [
       1,

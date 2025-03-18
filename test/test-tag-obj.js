@@ -25,7 +25,7 @@ function tryEncrypting () {
 tryEncrypting()
 */
 
-function tryTaggingObj () {
+function tryTaggingObj() {
   const obj = { thing1: 1, thing2: 2 }
   console.log('Object:')
   console.log(obj)
