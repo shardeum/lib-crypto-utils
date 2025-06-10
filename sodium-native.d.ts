@@ -23,5 +23,7 @@ declare module 'sodium-native' {
   export function crypto_auth_verify(output: Buffer, input: Buffer, key: Buffer): boolean
   export function crypto_sign(signedMessage: Buffer, message: Buffer, secretKey: Buffer): void
   export function crypto_sign_open(message: Buffer, signedMessage: Buffer, publicKey: Buffer): boolean
+  export function crypto_sign_detached(signature: Buffer, message: Buffer, secretKey: Buffer): void
+  export function crypto_sign_verify_detached(signature: Buffer, message: Buffer, publicKey: Buffer): boolean
   export function crypto_scalarmult(sharedSecret: Buffer, secretKey: Buffer, remotePublicKey: Buffer): void
 }
