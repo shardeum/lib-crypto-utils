@@ -405,10 +405,8 @@ function verify(msg: string, sig: hexstring | Buffer, pk: publicKey | Buffer): b
   try {
     const opened = Buffer.allocUnsafe(sigBuf.length - sodium.crypto_sign_BYTES)
     sodium.crypto_sign_open(opened, sigBuf as Buffer, pkBuf as Buffer)
-    const verified = opened.toString('hex')
     const msgBuf = Buffer.from(msg, 'hex')
-    const verifiedBuf = Buffer.from(verified, 'hex')
-    return sodium.sodium_memcmp(verifiedBuf, msgBuf)
+    return sodium.sodium_memcmp(opened, msgBuf)
   } catch (e) {
     throw new Error('Unable to verify provided signature with provided public key.')
   }
