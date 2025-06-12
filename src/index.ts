@@ -323,8 +323,9 @@ export function setCustomStringifier(method: (input: unknown) => string, name: s
  * Returns a signature obtained by signing the input hash (hex string or buffer) with the sk string
  * @param input
  * @param sk
+ * @param detached - If true (default), returns only the signature (64 bytes). If false, returns signature + message
  */
-export function sign(input: hexstring | Buffer, sk: secretKey | Buffer): string {
+export function sign(input: hexstring | Buffer, sk: secretKey | Buffer, detached = true): string {
   let inputBuf: Buffer
   let skBuf: Buffer
   if (typeof input !== 'string') {
@@ -353,9 +354,65 @@ export function sign(input: hexstring | Buffer, sk: secretKey | Buffer): string 
       throw new TypeError('Secret key string must be in hex format')
     }
   }
-  const sig = Buffer.allocUnsafe(inputBuf.length + sodium.crypto_sign_BYTES)
+  if (detached) {
+    // Use detached signature
+    const sig = Buffer.allocUnsafe(sodium.crypto_sign_BYTES)
+    try {
+      sodium.crypto_sign_detached(sig, inputBuf, skBuf)
+    } catch (e) {
+      throw new Error('Failed to sign input with provided secret key.')
+    }
+    return sig.toString('hex')
+  } else {
+    // Use non-detached signature (legacy behavior)
+    const sig = Buffer.allocUnsafe(inputBuf.length + sodium.crypto_sign_BYTES)
+    try {
+      sodium.crypto_sign(sig, inputBuf, skBuf)
+    } catch (e) {
+      throw new Error('Failed to sign input with provided secret key.')
+    }
+    return sig.toString('hex')
+  }
+}
+
+/**
+ * Returns a detached signature obtained by signing the input hash (hex string or buffer) with the sk string
+ * @param input - The message to sign (hex string or buffer)
+ * @param sk - The secret key
+ * @returns Only the 64-byte signature as hex string
+ */
+export function signDetached(input: hexstring | Buffer, sk: secretKey | Buffer): string {
+  let inputBuf: Buffer
+  let skBuf: Buffer
+  if (typeof input !== 'string') {
+    if (Buffer.isBuffer(input)) {
+      inputBuf = input
+    } else {
+      throw new TypeError('Input must be a hex string or buffer.')
+    }
+  } else {
+    try {
+      inputBuf = Buffer.from(input, 'hex')
+    } catch (e) {
+      throw new TypeError('Input string must be in hex format.')
+    }
+  }
+  if (typeof sk !== 'string') {
+    if (Buffer.isBuffer(sk)) {
+      skBuf = sk
+    } else {
+      throw new TypeError('Secret key must be a hex string or buffer.')
+    }
+  } else {
+    try {
+      skBuf = Buffer.from(sk, 'hex')
+    } catch (e) {
+      throw new TypeError('Secret key string must be in hex format')
+    }
+  }
+  const sig = Buffer.allocUnsafe(sodium.crypto_sign_BYTES)
   try {
-    sodium.crypto_sign(sig, inputBuf, skBuf)
+    sodium.crypto_sign_detached(sig, inputBuf, skBuf)
   } catch (e) {
     throw new Error('Failed to sign input with provided secret key.')
   }
@@ -368,9 +425,10 @@ export function sign(input: hexstring | Buffer, sk: secretKey | Buffer): string 
  * @param obj
  * @param sk
  * @param pk
+ * @param detached - If true (default), uses detached signature (64 bytes only). If false, uses non-detached
  * @returns the new signed object with the `sign` field. The original object is mutated as well.
  */
-export function signObj(obj: object, sk: secretKey | Buffer, pk: publicKey | Buffer): SignedObject {
+export function signObj(obj: object, sk: secretKey | Buffer, pk: publicKey | Buffer, detached = true): SignedObject {
   if (typeof obj !== 'object') {
     throw new TypeError('Input must be an object.')
   }
@@ -380,7 +438,30 @@ export function signObj(obj: object, sk: secretKey | Buffer, pk: publicKey | Buf
   }
   const objStr = stringify(obj)
   const hashed = hash(objStr, 'buffer')
-  const sig = sign(hashed, sk)
+  const sig = sign(hashed, sk, detached)
+  const signPk = Buffer.isBuffer(pk) ? bufferToHex(pk) : pk
+  ;(obj as SignedObject).sign = { owner: signPk, sig }
+  return obj as SignedObject
+}
+
+/**
+ * Attaches a sign field to the input object using detached signatures
+ * @param obj - The object to sign
+ * @param sk - The secret key
+ * @param pk - The public key
+ * @returns the new signed object with the `sign` field. The original object is mutated as well.
+ */
+export function signObjDetached(obj: object, sk: secretKey | Buffer, pk: publicKey | Buffer): SignedObject {
+  if (typeof obj !== 'object') {
+    throw new TypeError('Input must be an object.')
+  }
+  // If it's an array, we don't want to try to sign it
+  if (Array.isArray(obj)) {
+    throw new TypeError('Input cannot be an array.')
+  }
+  const objStr = stringify(obj)
+  const hashed = hash(objStr, 'buffer')
+  const sig = signDetached(hashed, sk)
   const signPk = Buffer.isBuffer(pk) ? bufferToHex(pk) : pk
   ;(obj as SignedObject).sign = { owner: signPk, sig }
   return obj as SignedObject
@@ -402,13 +483,59 @@ function verify(msg: string, sig: hexstring | Buffer, pk: publicKey | Buffer): b
   }
   const sigBuf = _ensureBuffer(sig)
   const pkBuf = _ensureBuffer(pk)
+  
+  // Auto-detect signature type based on length
+  // Detached signatures are exactly 64 bytes
+  // Non-detached signatures are 64 bytes + message length
+  const msgBuf = Buffer.from(msg, 'hex')
+  const expectedNonDetachedLength = sodium.crypto_sign_BYTES + msgBuf.length
+  
+  if (sigBuf.length === sodium.crypto_sign_BYTES) {
+    // This is a detached signature
+    try {
+      return sodium.crypto_sign_verify_detached(sigBuf as Buffer, msgBuf, pkBuf as Buffer)
+    } catch (e) {
+      return false
+    }
+  } else if (sigBuf.length === expectedNonDetachedLength) {
+    // This is a non-detached signature
+    try {
+      const opened = Buffer.allocUnsafe(sigBuf.length - sodium.crypto_sign_BYTES)
+      sodium.crypto_sign_open(opened, sigBuf as Buffer, pkBuf as Buffer)
+      const verified = opened.toString('hex')
+      return verified === msg
+    } catch (e) {
+      return false
+    }
+  } else {
+    // Invalid signature length
+    throw new Error('Invalid signature length. Expected either detached (64 bytes) or non-detached signature.')
+  }
+}
+
+/**
+ * Verifies a detached signature against a message
+ * @param msg - The message that was signed (hex string)
+ * @param sig - The detached signature (hex string or buffer)
+ * @param pk - The public key to verify with
+ * @returns true if the signature is valid, false otherwise
+ */
+export function verifyDetached(msg: string, sig: hexstring | Buffer, pk: publicKey | Buffer): boolean {
+  if (typeof msg !== 'string') {
+    throw new TypeError('Message to compare must be a string.')
+  }
+  const msgBuf = Buffer.from(msg, 'hex')
+  const sigBuf = _ensureBuffer(sig)
+  const pkBuf = _ensureBuffer(pk)
+  
+  if (sigBuf.length !== sodium.crypto_sign_BYTES) {
+    throw new Error('Invalid signature length for detached signature.')
+  }
+  
   try {
-    const opened = Buffer.allocUnsafe(sigBuf.length - sodium.crypto_sign_BYTES)
-    sodium.crypto_sign_open(opened, sigBuf as Buffer, pkBuf as Buffer)
-    const verified = opened.toString('hex')
-    return verified === msg
+    return sodium.crypto_sign_verify_detached(sigBuf as Buffer, msgBuf, pkBuf as Buffer)
   } catch (e) {
-    throw new Error('Unable to verify provided signature with provided public key.')
+    return false
   }
 }
 
@@ -431,6 +558,28 @@ export function verifyObj(obj: SignedObject): boolean {
   }
   const objHash = hashObj(obj, true)
   return verify(objHash, obj.sign.sig, obj.sign.owner)
+}
+
+/**
+ * Verifies an object signed with detached signature
+ * @param obj - The signed object to verify
+ * @returns true if the signature is valid, false otherwise
+ */
+export function verifyObjDetached(obj: SignedObject): boolean {
+  if (typeof obj !== 'object') {
+    throw new TypeError('Input must be an object.')
+  }
+  if (!obj.sign || !obj.sign.owner || !obj.sign.sig) {
+    throw new Error('Object must contain a sign field with the following data: { owner, sig }')
+  }
+  if (typeof obj.sign.owner !== 'string') {
+    throw new TypeError('Owner must be a public key represented as a hex string.')
+  }
+  if (typeof obj.sign.sig !== 'string') {
+    throw new TypeError('Signature must be a valid signature represented as a hex string.')
+  }
+  const objHash = hashObj(obj, true)
+  return verifyDetached(objHash, obj.sign.sig, obj.sign.owner)
 }
 
 /**
