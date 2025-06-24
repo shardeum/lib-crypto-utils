@@ -24,4 +24,5 @@ declare module 'sodium-native' {
   export function crypto_sign(signedMessage: Buffer, message: Buffer, secretKey: Buffer): void
   export function crypto_sign_open(message: Buffer, signedMessage: Buffer, publicKey: Buffer): boolean
   export function crypto_scalarmult(sharedSecret: Buffer, secretKey: Buffer, remotePublicKey: Buffer): void
+  export function sodium_memcmp(b1: Buffer, b2: Buffer): boolean
 }
